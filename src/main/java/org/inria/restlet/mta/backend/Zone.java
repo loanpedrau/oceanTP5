@@ -25,7 +25,7 @@ public class Zone {
     /**
      * Le requin mange une sardine. 
      */
-    public void sharkEat(){
+    public synchronized void sharkEat(){
         if(this.nbSardines > 0){
             this.nbSardines --;
         }
