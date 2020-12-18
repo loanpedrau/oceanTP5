@@ -14,7 +14,7 @@ public class Requin extends Thread{
     private int nbZone;
     private int capacitePilotes; //nombre maximum de poissons pilotes qu'il peut transporter
     private int cptPilotes; //nombre de poisson pilotes accrochés à lui
-    private int sleep = 2500;
+    private int sleep = 1000;
     
     public Requin(Zone[][] zones, Zone actualZone, int nbZone ) {
         this.nbCycleRestant = 5;
