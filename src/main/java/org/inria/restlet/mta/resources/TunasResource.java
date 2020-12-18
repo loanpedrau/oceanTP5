@@ -7,6 +7,12 @@ import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
+/**
+ * Classe permettant de répondre aux fonctionnalités suivantes de l'api rest.
+ * - récupérer le nombre global de sardines restantes
+ * @author Loan et Hafsa
+ *
+ */
 public class TunasResource extends ServerResource{
 
     /** Backend.*/
@@ -22,6 +28,11 @@ public class TunasResource extends ServerResource{
                 .get("backend");
     }
 
+    /**
+     * Retourne le nomble global de sardines restantes dans l'océan.
+     * @return nb sardines restantes
+     * @throws Exception
+     */
     @Get("json")
     public Representation getNbSardines() throws Exception
     {

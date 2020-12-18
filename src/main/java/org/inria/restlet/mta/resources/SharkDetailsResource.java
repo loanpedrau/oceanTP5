@@ -2,13 +2,18 @@ package org.inria.restlet.mta.resources;
 
 import org.inria.restlet.mta.backend.Backend;
 import org.inria.restlet.mta.backend.Requin;
-import org.inria.restlet.mta.backend.Zone;
 import org.json.JSONObject;
 import org.restlet.ext.json.JsonRepresentation;
 import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.restlet.resource.ServerResource;
 
+/**
+ * Classe permettant de répondre aux fonctionnalités suivantes de l'api rest.
+ * -récupérer la position d’un requin et son temps de vie restant
+ * @author Loan et Hafsa
+ *
+ */
 public class SharkDetailsResource extends ServerResource{
 
     /** Backend.*/
@@ -24,6 +29,11 @@ public class SharkDetailsResource extends ServerResource{
                 .get("backend");
     }
     
+    /**
+     * Récupère la position d’un requin et son temps de vie restant
+     * @return requin informations
+     * @throws Exception
+     */
     @Get("json")
     public Representation getSharkDetails() throws Exception
     {

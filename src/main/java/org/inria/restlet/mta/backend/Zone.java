@@ -4,27 +4,10 @@ public class Zone {
 
     private int x;
     private int y;
-    private int nbSardines;
+    private int nbSardines;         //nb sardines présentes
     private boolean sharkIsPresent;
     private Requin requin;
-    
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    
+      
     public Zone(int x, int y) {
         this.nbSardines = 5;
         this.x = x;
@@ -38,11 +21,20 @@ public class Zone {
     public void setSharkPresent(boolean present) {
         this.sharkIsPresent = present;
     }
+    
+    /**
+     * Le requin mange une sardine. 
+     */
     public void sharkEat(){
         if(this.nbSardines > 0){
             this.nbSardines --;
         }
     }
+    
+    /**
+     * Permet à un requin d'entrer dans une zone.
+     * @param requin qui veux entrer
+     */
     public synchronized void entrer(Requin requin){
         while(sharkIsPresent){
             try {
@@ -55,17 +47,22 @@ public class Zone {
         this.sharkIsPresent = true;
         this.requin = requin;
         this.notifyAll();
-        System.out.println("Le requin : "+Thread.currentThread().getName()+" est rentrÃ© dans la zone ("+this.x+" , "+this.y+")");
+        System.out.println("Le requin : "+Thread.currentThread().getName()+" est rentré dans la zone ("+this.x+" , "+this.y+")");
     }
 
+    /**
+     * Permet à un requin de sortir d'une zone.
+     */
     public synchronized void sortir(){
         this.sharkIsPresent = false;
         this.requin = null;
         this.notifyAll();
         System.out.println("Le requin : "+Thread.currentThread().getName()+" est sorti de la zone ("+this.x+" , "+this.y+")");
-
     }
     
+    /**
+     * Permet aux poissons pilote d'attendre qu'un requin entre dans la zone.
+     */
     public synchronized void attendreEntrerRequin() {
         while(this.requin == null) {
             System.out.println(Thread.currentThread().getName()+" attends un requin dans la zone : "+x+","+y);
@@ -78,6 +75,10 @@ public class Zone {
         System.out.println(Thread.currentThread().getName()+" a trouvé un requin dans la zone : "+x+","+y);
     } 
     
+    /**
+     * Retourne le requin présent dans la zone.
+     * @return
+     */
     public Requin getRequin() {
         return this.requin;
     }
@@ -104,5 +105,21 @@ public class Zone {
     
     public boolean isSharkPresent() {
         return this.sharkIsPresent;
+    }
+    
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }

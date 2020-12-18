@@ -13,7 +13,7 @@ import org.inria.restlet.mta.database.api.impl.Ocean;
  */
 public class Backend
 {
-    /** Database.*/
+    /** The object ocean simulate the database.*/
     private Ocean ocean;
 
     public Backend()
